@@ -4,8 +4,7 @@
 
 ### Estado del código
 [![DevOps](https://github.com/JanoGit/iwvg-devops-martin-jano/actions/workflows/test-sonar.yml/badge.svg)](https://github.com/JanoGit/iwvg-devops-martin-jano/actions/workflows/test-sonar.yml/badge.svg)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=JanoGit_iwvg-devops-martin-jano&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=JanoGit_iwvg-devops-martin-jano)
-
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?branch=develop&project=JanoGit_iwvg-devops-martin-jano&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=JanoGit_iwvg-devops-martin-jano&branch=develop)
 
 
 1. Clonar el repositorio en tu equipo, **mediante consola**:
