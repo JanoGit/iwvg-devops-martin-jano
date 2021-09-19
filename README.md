@@ -7,6 +7,7 @@
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=JanoGit_iwvg-devops-martin-jano&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=JanoGit_iwvg-devops-martin-jano)
 
 
+
 1. Clonar el repositorio en tu equipo, **mediante consola**:
 ```sh
 > cd <folder path>
