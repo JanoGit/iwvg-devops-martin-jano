@@ -2,7 +2,10 @@
 ## Ingeniería Web: Visión General (IWVG) DevOps
 > Este proyecto es una Plantilla de apoyo docente de la asignatura.
 
-### :gear: Instalación del proyecto
+### Estado del código
+[![DevOps](https://github.com/JanoGit/iwvg-devops-martin-jano/actions/workflows/test-sonar.yml/badge.svg)](https://github.com/JanoGit/iwvg-devops-martin-jano/actions/workflows/test-sonar.yml/badge.svg)
+
+
 1. Clonar el repositorio en tu equipo, **mediante consola**:
 ```sh
 > cd <folder path>
