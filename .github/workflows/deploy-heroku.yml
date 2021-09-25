@@ -12,4 +12,4 @@ jobs:
         with:
           heroku_email: "jano.martin.lopez.1234@gmail.com"
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "miw-devops-janomartin" #Must be unique in Heroku
+          heroku_app_name: "miw-devops-janomartinlopez" #Must be unique in Heroku
