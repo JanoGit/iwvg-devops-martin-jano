@@ -28,7 +28,6 @@ package es.upm.miw.iwvg_devops.code;
 public class Fraction {
 
     private int numerator;
-
     private int denominator;
 
     public Fraction(int numerator, int denominator) {
@@ -41,7 +40,7 @@ public class Fraction {
     }
 
     public int getNumerator() {
-        return numerator;
+        return this.numerator;
     }
 
     public void setNumerator(int numerator) {
@@ -49,7 +48,7 @@ public class Fraction {
     }
 
     public int getDenominator() {
-        return denominator;
+        return this.denominator;
     }
 
     public void setDenominator(int denominator) {
@@ -57,14 +56,14 @@ public class Fraction {
     }
 
     public double decimal() {
-        return (double) numerator / denominator;
+        return (double) this.numerator / this.denominator;
     }
 
     @Override
     public String toString() {
         return "Fraction{" +
-                "numerator=" + numerator +
-                ", denominator=" + denominator +
+                "numerator=" + this.numerator +
+                ", denominator=" + this.denominator +
                 '}';
     }
 
