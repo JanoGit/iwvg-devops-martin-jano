@@ -1,5 +1,7 @@
 package es.upm.miw.iwvg_devops.code;
 
+import java.util.function.Consumer;
+
 /**
  * Conceptos: Las fracciones propias son aquellas cuyo numerador es menor que el denominador
  * <p>
@@ -37,6 +39,84 @@ public class Fraction {
 
     public Fraction() {
         this(1, 1);
+    }
+
+    public boolean isProper() {
+        return this.numerator < this.denominator;
+    }
+
+    public boolean isImproper() {
+        return this.numerator > this.denominator;
+    }
+
+    public boolean isEquivalent(Fraction fraction) {
+        assert fraction != null;
+
+        return this.numerator * fraction.getDenominator() == this.denominator * fraction.getNumerator();
+    }
+
+    public void add(Fraction fraction) {
+        assert fraction != null;
+
+        int CM = this.commonMultiple(this.denominator, fraction.getDenominator());
+        this.numerator = this.numerator * fraction.getDenominator() + fraction.getNumerator() * this.denominator;
+        this.denominator = CM;
+
+        int GCD = this.greatestCommonDivisor(this.numerator, CM);
+        this.reduceFractions(this, GCD);
+    }
+
+    public void multiply(Fraction fraction) {
+        assert fraction != null;
+
+        this.numerator = this.numerator * fraction.getNumerator();
+        this.denominator = this.denominator * fraction.getDenominator();
+        int GCD = this.greatestCommonDivisor(this.numerator, this.denominator);
+        this.reduceFractions(this, GCD);
+    }
+
+    public void divide(Fraction fraction) {
+        assert fraction != null;
+
+        this.inverseFraction(fraction);
+        this.multiply(fraction);
+    }
+
+    public void inverseFraction(Fraction fraction) {
+        assert fraction != null;
+
+        int numeratorToBecomeDenominator = fraction.getNumerator();
+        fraction.setNumerator(fraction.getDenominator());
+        fraction.setDenominator(numeratorToBecomeDenominator);
+    }
+
+    public int greatestCommonDivisor(int firstNumber, int secondNumber) {
+        if (firstNumber == 0 || secondNumber == 0) {
+            throw new IllegalArgumentException();
+        }
+        int auxiliaryNumber;
+        while (secondNumber != 0) {
+            auxiliaryNumber = secondNumber;
+            secondNumber = firstNumber % auxiliaryNumber;
+            firstNumber = auxiliaryNumber;
+        }
+
+        return firstNumber;
+    }
+
+    public void reduceFractions(Fraction fraction, int GCD) {
+        assert fraction != null;
+
+        fraction.setNumerator(fraction.getNumerator() / GCD);
+        fraction.setDenominator(fraction.getDenominator() / GCD);
+    }
+
+    public int commonMultiple(int thisDenominator, int fractionDenominator) {
+        if (thisDenominator == 0 || fractionDenominator == 0) {
+            throw new IllegalArgumentException();
+        }
+
+        return thisDenominator * fractionDenominator;
     }
 
     public int getNumerator() {
