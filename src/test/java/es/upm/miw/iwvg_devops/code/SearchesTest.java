@@ -14,4 +14,17 @@ public class SearchesTest {
                 new Searches().findUserIdBySomeProperFraction().collect(Collectors.toList()));
     }
 
+    @Test
+    public void testFindFractionAdditionByUserId() {
+        assertEquals(2,
+                new Searches().findFractionAdditionByUserId("4").getNumerator());
+        assertEquals(1,
+                new Searches().findFractionAdditionByUserId("4").getDenominator());
+
+        assertEquals(109,
+                new Searches().findFractionAdditionByUserId("2").getNumerator());
+        assertEquals(30,
+                new Searches().findFractionAdditionByUserId("2").getDenominator());
+    }
+
 }
