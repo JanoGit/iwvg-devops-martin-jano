@@ -34,6 +34,7 @@ public class Searches {
                 .filter(user -> user.getFractions().stream()
                         .anyMatch(Fraction::isImproper))
                 .map(User::getName);
+        //FixMe: Added modification to fulfil issue#14(github)
     }
 
     public Fraction findFractionSubtractionByUserName(String name) {
