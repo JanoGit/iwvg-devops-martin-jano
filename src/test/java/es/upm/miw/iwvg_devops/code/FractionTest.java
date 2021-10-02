@@ -26,9 +26,8 @@ public class FractionTest {
     void testAddMethod() {
         Fraction fraction = new Fraction(4, 6);
         Fraction fractionToBeAdded = new Fraction(2, 3);
-        fraction.add(fractionToBeAdded);
-        assertEquals(4, fraction.getNumerator());
-        assertEquals(3, fraction.getDenominator());
+        assertEquals(4, fraction.add(fractionToBeAdded).getNumerator());
+        assertEquals(3, fraction.add(fractionToBeAdded).getDenominator());
     }
 
     @Test
@@ -44,12 +43,10 @@ public class FractionTest {
     void testMultiplyAndDivideMethods() {
         Fraction fraction = new Fraction(2, 3);
         Fraction fraction2 = new Fraction(4, 6);
-        fraction.multiply(fraction2);
-        assertEquals(4, fraction.getNumerator());
-        assertEquals(9, fraction.getDenominator());
-        fraction.divide(fraction2);
-        assertEquals(2, fraction.getNumerator());
-        assertEquals(3, fraction.getDenominator());
+        assertEquals(4, fraction.multiply(fraction2).getNumerator());
+        assertEquals(9, fraction.multiply(fraction2).getDenominator());
+        assertEquals(1, fraction.divide(fraction2).getNumerator());
+        assertEquals(1, fraction.divide(fraction2).getDenominator());
     }
 
 }
