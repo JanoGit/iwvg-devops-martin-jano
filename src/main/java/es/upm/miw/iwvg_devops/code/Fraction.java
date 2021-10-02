@@ -1,7 +1,5 @@
 package es.upm.miw.iwvg_devops.code;
 
-import java.util.function.Consumer;
-
 /**
  * Conceptos: Las fracciones propias son aquellas cuyo numerador es menor que el denominador
  * <p>
@@ -55,45 +53,55 @@ public class Fraction {
         return this.numerator * fraction.getDenominator() == this.denominator * fraction.getNumerator();
     }
 
-    public void add(Fraction fraction) {
+    public Fraction add(Fraction fraction) {
         assert fraction != null;
 
-        int CM = this.commonMultiple(this.denominator, fraction.getDenominator());
-        this.numerator = this.numerator * fraction.getDenominator() + fraction.getNumerator() * this.denominator;
-        this.denominator = CM;
+        Fraction calculatedFraction = new Fraction(this.numerator, this.denominator);
+        this.changeNegativeDenominator(calculatedFraction);
+        this.changeNegativeDenominator(fraction);
+        int CM = this.commonMultiple(calculatedFraction.getDenominator(), fraction.getDenominator());
+        calculatedFraction.setNumerator(calculatedFraction.getNumerator() * fraction.getDenominator() + fraction.getNumerator() * calculatedFraction.getDenominator());
+        calculatedFraction.setDenominator(CM);
 
-        int GCD = this.greatestCommonDivisor(this.numerator, CM);
-        this.reduceFractions(this, GCD);
+        int GCD = this.greatestCommonDivisor(calculatedFraction.getNumerator(), CM);
+        this.reduceFractions(calculatedFraction, GCD);
+        return calculatedFraction;
     }
 
-    public void multiply(Fraction fraction) {
-        assert fraction != null;
-
-        this.numerator = this.numerator * fraction.getNumerator();
-        this.denominator = this.denominator * fraction.getDenominator();
-        int GCD = this.greatestCommonDivisor(this.numerator, this.denominator);
-        this.reduceFractions(this, GCD);
+    public void changeNegativeDenominator(Fraction fraction) {
+        if (fraction.getDenominator() < 0) {
+            fraction.setDenominator(-fraction.getDenominator());
+            fraction.setNumerator(-fraction.getNumerator());
+        }
     }
 
-    public void divide(Fraction fraction) {
+    public Fraction multiply(Fraction fraction) {
         assert fraction != null;
 
-        this.inverseFraction(fraction);
-        this.multiply(fraction);
+        Fraction calculatedFraction = new Fraction(this.numerator, this.denominator);
+        calculatedFraction.setNumerator(calculatedFraction.getNumerator() * fraction.getNumerator());
+        calculatedFraction.setDenominator(calculatedFraction.getDenominator() * fraction.getDenominator());
+        int GCD = this.greatestCommonDivisor(calculatedFraction.getNumerator(), calculatedFraction.getDenominator());
+        this.reduceFractions(calculatedFraction, GCD);
+        return calculatedFraction;
     }
 
-    public void inverseFraction(Fraction fraction) {
+    public Fraction divide(Fraction fraction) {
         assert fraction != null;
 
-        int numeratorToBecomeDenominator = fraction.getNumerator();
-        fraction.setNumerator(fraction.getDenominator());
-        fraction.setDenominator(numeratorToBecomeDenominator);
+        return this.multiply(this.inverseFraction(fraction));
+    }
+
+    public Fraction inverseFraction(Fraction fraction) {
+        assert fraction != null;
+
+        Fraction invertedFraction = new Fraction();
+        invertedFraction.setNumerator(fraction.getDenominator());
+        invertedFraction.setDenominator(fraction.getNumerator());
+        return invertedFraction;
     }
 
     public int greatestCommonDivisor(int firstNumber, int secondNumber) {
-        if (firstNumber == 0 || secondNumber == 0) {
-            throw new IllegalArgumentException();
-        }
         int auxiliaryNumber;
         while (secondNumber != 0) {
             auxiliaryNumber = secondNumber;
@@ -112,10 +120,6 @@ public class Fraction {
     }
 
     public int commonMultiple(int thisDenominator, int fractionDenominator) {
-        if (thisDenominator == 0 || fractionDenominator == 0) {
-            throw new IllegalArgumentException();
-        }
-
         return thisDenominator * fractionDenominator;
     }
 
